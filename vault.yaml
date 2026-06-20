@@ -1,0 +1,25 @@
+# Vault manifest + cross-vault router index entry.
+# vault-agents configures uniquely-flavored agents and their durable memories, and holds the canonical
+# cross-platform "ways of working with me" contract that every agent projects into its platform-local config.
+# Generic preferences (ways-of-working.md) apply to ALL agents; a flavored agent that learns to do X for me
+# (sid, sun, Jeeves, Bloomstack agents) keeps its own config + memory under agents/<name>/. Extends vault-core.
+
+name: vault-agents
+version: 0.1.0
+description: Configure uniquely-flavored agents and their durable memories + the canonical cross-platform agent contract ("ways of working with me"). The basis for agent configuration across platforms.
+kind: agent-vault
+
+extends: [vault-core]
+
+# Cross-vault router index entry. Route by path (works with no skill-runtime).
+guide: skills/vault-guide/SKILL.md
+capabilities: [ways-of-working-contract, per-agent-config, per-agent-memory]
+
+# Access-policy: trust-circle (me + my agents), default-deny. Reciprocal of vault-personal-raphael's edge,
+# so an agent resident here may read the personal vault and vice-versa.
+# NOTE: unlike the personal vault, WRITE is granted to the trust-circle — agents write their OWN config +
+# memory here (that is the point of this vault). DECLARED, not yet ENFORCED (local-FS / same-owner).
+access:
+  read: [raphael, raphael-agents]
+  write: [raphael, raphael-agents]   # agents curate their own agents/<name>/ store
+  default: deny
