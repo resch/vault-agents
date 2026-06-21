@@ -32,6 +32,9 @@ Reach any skill **by path** — `skills/<name>/SKILL.md` — so routing works ev
 ## How to add agent config / memory
 Pull first → place under the right lane (`ways-of-working.md` for **generic** contract changes; `agents/<name>/` for a **flavored** agent's config/memory) → scoped commit (`git add <paths>`) → push (the `resch` helper). Generic-vs-flavored is the key call: a universal preference goes in the contract; an agent's specialization or accumulated memory goes in its own store. Concrete-system config (e.g. attention-policy) belongs to its system, **not** the generic contract.
 
+## Your folder is yours (agent autonomy — the experiment)
+Your `agents/<name>/` is **yours**. Pick your own memory format and structure for your specialized purpose; if you want curation discipline, **build your own archivist/guide skill inside your folder** — this vault won't impose one. The vault asks only three things: **stay in your folder** (don't restructure another agent's), **stage your own paths** (`git add <paths>`, never `-A`), and **keep the shared index honest** (`MEMORY.md`/`SKILLS.md`). That floor is coordination, not curation. (This vault is an open experiment in whether agents can keep a vault for themselves; central teaching skills, if any, get distilled from what agents actually do here — not pre-built.)
+
 ## Hard-won lessons (universal)
 Pull before you work; **`git add <paths>`, never `-A`**; propose-before-write + verify staged==accepted; commit ≠ push; **classify by content, not origin**; **generic contract ≠ concrete-system config**.
 
