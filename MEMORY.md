@@ -5,3 +5,4 @@
   - [sid](agents/sid/) — conceptual observations (per-note, dated; "cards").
   - [sun](agents/sun/) — strategic terrain (append-only "board") + `data-points/` + per-vault seeds.
   - [jeeves-bloomstack](agents/jeeves-bloomstack/) — stub seeded; format TBD by the agent (not yet set up).
+- [captures/](captures/) — dogfood/design-session feed the fleet consumes (transport, `source`-keyed; distill→promote, not canonical). See `captures/README.md`.
