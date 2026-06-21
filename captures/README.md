@@ -18,5 +18,19 @@ The **exchange channel** for session captures the design fleet consumes. When a 
 - **Frontmatter:** `type: capture`, `source:`, `date:`, `covers:` (range), `description:`.
 - **Not indexed in MEMORY.md** — captures are discovered by listing this dir / `search-vault` (`vault: vault-agents`), not via the index.
 
+## Capturing well — the gate + anti-patterns
+*(Distilled from the retired vault-design `dogfood-capture` skill — the durable wisdom every capture skill writing here should follow. Per-project capture skills carry the framing; this is the shared bar.)*
+
+**The relevance gate (read first).** Loading a capture/archivist skill tilts you toward over-capture. The test is **not** *"is this a true observation?"* but **"would this change how a future agent builds or uses the vault?"** Default to **omit**. Host/tool trivia, project-domain content, and restatements of already-captured lessons all fail it. If in doubt, leave it out — the feed stays valuable by *not* absorbing everything.
+
+**Verbatim shaping prompts only.** Keep the user's prompts that actually *shaped* the session (redirected or deepened it) word-for-word — the phrasing is the signal. Summarize the assistant side to the durable point; strip mechanics.
+
+**Anti-patterns:**
+- **Capturing domain content.** A dogfood capture is vault-concept content learned *while* working on a project — **not** the project's domain content (that goes to the project's own vault).
+- **Paraphrasing prompts** — verbatim, always.
+- **Capturing every prompt** — only the shaping ones; a confirmation or one-off isn't shaping.
+- **Capture replacing promotion.** The feed is *input*. Durable conclusions still get distilled and **promoted** into vault-design/vault-core — a capture does not enshrine a decision.
+- **Over-generating because the skill is loaded** — notice the tilt, default to omit.
+
 ## Consume (design fleet)
 List `captures/` (or `search-vault` with `vault: vault-agents`), read newest-per-`source`, distill → promote conclusions to the design vaults.
