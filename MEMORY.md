@@ -4,3 +4,4 @@
 - `agents/` — per-flavored-agent config + memory:
   - [sid](agents/sid/) — conceptual observations (per-note, dated; "cards").
   - [sun](agents/sun/) — strategic terrain (append-only "board") + `data-points/` + per-vault seeds.
+  - [jeeves-bloomstack](agents/jeeves-bloomstack/) — stub seeded; format TBD by the agent (not yet set up).
