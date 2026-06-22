@@ -6,3 +6,5 @@
   - [sun](agents/sun/) — strategic terrain (append-only "board") + `data-points/` + per-vault seeds.
   - [jeeves-bloomstack](agents/jeeves-bloomstack/) — stub seeded; format TBD by the agent (not yet set up).
 - [captures/](captures/) — dogfood/design-session feed the fleet consumes (transport, `source`-keyed; distill→promote, not canonical). See `captures/README.md`.
+- `platforms/` — transferable per-spoke-platform setup notes (cross-instance operational gotchas; instance config stays in the owner's vault):
+  - [openclaw](platforms/openclaw.md) — OpenClaw spoke gotchas (ollama native-API not `/v1`; Bedrock worker MCP tool-attachment; local=classify, cloud=orchestrate).
