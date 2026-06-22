@@ -15,3 +15,13 @@ On the **Bedrock (converse-stream) provider path**, an isolated worker agent who
 
 ## Capability vs orchestration (design takeaway)
 A weak local model (small qwen) is a reliable **single-shot classifier** but **not** a reliable **agent-loop orchestrator** that also coerces output to a fixed schema. The fix for the classifier — grammar-constrained output via ollama's `format` (JSON schema) — isn't reachable through the agent loop, only through a direct/single-shot call. So spoke **orchestration** wants a capable model; own-account **Bedrock** keeps it private vs a public API (no training on your data, stays in your tenant). Most users won't have a capable local model — **treat cloud orchestration as the baseline; local is an optional optimization for the privacy-sensitive classification step.**
+
+## Which models can drive the worker-agent orchestration loop (measured 2026-06-22)
+Task: worker agent fetches inbox via the fastmail MCP → classifies → emits strict JSON. Bedrock models:
+- **Works:** Claude **Sonnet 4.5** and **Haiku 4.5** — clean schema, correct classifications. **Haiku 4.5 is the cheap-reliable floor** (~3× cheaper than Sonnet).
+- **Too weak:** Amazon **Nova Micro** — apples-to-apples (same prompt that Sonnet/Haiku passed) it confabulates (e.g. claims to "write a file" it never wrote) and returns `[]`. Nova **Lite/Pro** failed the same way (their runs had a prompt confound, but the family pattern + only-marginal savings over Haiku make them not worth chasing for orchestration).
+- **Local qwen 7b/14b:** drives the tools but can't hold the output schema in the loop.
+
+**Prompt scaffolding is load-bearing.** An explicit tool *procedure* in the agent prompt — "call `list_folders` once, then `search_email`" — is what made the capable models succeed; a vague "fetch recent emails" produced empty/no-op output **even on Haiku**. Spell out the tool sequence for worker agents.
+
+**Two-tier takeaway:** orchestration floor = Anthropic **Haiku-class**; the cheap single-shot **classification** step (one email → one label, no tool loop) can still run on Nova Micro or local qwen.
