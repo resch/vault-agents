@@ -19,7 +19,12 @@
       "subagents",
       "fastmail__list_folders",
       "fastmail__search_email",
-      "fastmail__read_email"
+      "fastmail__read_email",
+      "fastmail__list_calendars",
+      "fastmail__search_events",
+      "fastmail__create_event",
+      "fastmail__update_event",
+      "fastmail__delete_event"
     ]
   },
   "contextLimits": {
