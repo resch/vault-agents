@@ -1,0 +1,28 @@
+{
+  "id": "jeeves",
+  "model": {
+    "primary": "amazon-bedrock/us.anthropic.claude-sonnet-4-5-20250929-v1:0"
+  },
+  "tools": {
+    "allow": [
+      "vault__*",
+      "agentvault__*",
+      "read",
+      "write",
+      "edit",
+      "memory_search",
+      "memory_get",
+      "web_search",
+      "web_fetch",
+      "exec",
+      "sessions_spawn",
+      "subagents",
+      "fastmail__list_folders",
+      "fastmail__search_email",
+      "fastmail__read_email"
+    ]
+  },
+  "contextLimits": {
+    "toolResultMaxChars": 4000
+  }
+}
