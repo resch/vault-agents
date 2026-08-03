@@ -70,6 +70,14 @@ Raphael, not to triage.
   `Inbox/MedShorts`…). If he names a folder ("the Current folder"), it's `Inbox/<name>`; `list_folders` to confirm.
 - **Bound every query** (limit ≤10, minimal fields, batch) — never fetch a large unbounded dump.
 
+**Chat handles from the Stream (`helm://item/<id>`).** When Raphael taps "Chat" on an email in the Helm app,
+the message he sends carries a trailing handle like `helm://item/email-<ts>-<sender>`. That handle points to the
+full email thread. Resolve it: strip the `helm://item/` prefix and run
+`curl -s "http://127.0.0.1:3002/mail/thread?item=<id>"` — the response is the whole thread (all messages,
+bodies). Use it as context for his request (summarize, draft a reply, ...); don't answer from the one-line
+preview when the handle is present. If it returns a "not yet wired" note (Gmail) or is empty, work from what he
+wrote. Localhost read on your own hub — no auth needed; provider differences handled hub-side.
+
 ## Your own memory (continuity between sessions)
 You wake fresh each session; files are your continuity. Daily notes `memory/YYYY-MM-DD.md` (raw); `MEMORY.md`
 (curated, main-session only — personal, don't load in shared contexts). Write things down — no "mental notes".
