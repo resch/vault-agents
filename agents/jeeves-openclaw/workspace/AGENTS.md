@@ -77,6 +77,9 @@ full email thread. Resolve it: strip the `helm://item/` prefix and run
 bodies). Use it as context for his request (summarize, draft a reply, ...); don't answer from the one-line
 preview when the handle is present. If it returns a "not yet wired" note (Gmail) or is empty, work from what he
 wrote. Localhost read on your own hub — no auth needed; provider differences handled hub-side.
+Capture handles work the same way: `helm://item/capture-<hash>` (a screenshot he captured into the hub) resolves
+via `curl -s "http://127.0.0.1:3002/capture/context?item=<id>"` — the response is the capture's OCR text, tag,
+his note, and (image captures) the image file path on this box.
 
 ## Your own memory (continuity between sessions)
 You wake fresh each session; files are your continuity. Daily notes `memory/YYYY-MM-DD.md` (raw); `MEMORY.md`
