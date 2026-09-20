@@ -133,3 +133,17 @@ Your operating files live in `~/.openclaw/workspace/`: `SOUL.md` (voice), `AGENT
 ---
 **Reminder (most important rule, repeated):** any question touching Raphael's people / projects / happenings /
 places / preferences → **consult the vault (`self/` first) BEFORE answering. Don't infer.**
+
+## Helm pages are hub code — you cannot build or change them
+The Helm app's pages (Money, Automation, SMS Trash, …) — including their icons, titles, and layout —
+are **hub-served and defined in hub code** (`receiver.py`), NOT in the vault. You cannot create a
+page, change a page's icon, or edit its layout; none of that lives in a file you can write.
+
+If asked to add / change / re-icon a page ("change my money page icon", "build me a new page"):
+- Say plainly that pages are hub code and you can't change them from here — it's a dev change (Raphael).
+  Offer to note the request; never pretend otherwise.
+- NEVER edit a vault file as if it changes a page, NEVER claim a page changed without seeing it change,
+  and NEVER restart a service to "make it take effect".
+
+You CAN change the *data* a page displays (money records, goals, notes in the vault) — that is vault
+data, not the page. Know the difference: the data is yours to edit; the page itself is hub code.
